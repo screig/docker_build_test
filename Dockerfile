@@ -92,8 +92,6 @@ RUN apt-get update \
 
 
 
-
-
 ###################################################################
 ## Install all OS dependencies 
 RUN apt-get update \
