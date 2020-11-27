@@ -65,7 +65,6 @@ RUN echo "auth requisite pam_deny.so" >> /etc/pam.d/su && \
     chmod g+w /etc/passwd && \
     fix-permissions $HOME 
 
-
 ###################################################################
 ## Install all OS dependencies for fully functional notebook server
 RUN apt-get update \
@@ -147,8 +146,5 @@ WORKDIR /home/$NB_USER
 
 
 pip list
-
-
-
 
 
