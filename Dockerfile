@@ -5,7 +5,6 @@ ARG ROOT_CONTAINER=krallin/ubuntu-tini:bionic
 ARG BASE_CONTAINER=$ROOT_CONTAINER
 FROM $BASE_CONTAINER
 
-
 LABEL maintainer="Sean Creighton <sean.creighton@gmail.com.com>"
 ARG NB_USER="jovyan"
 ARG NB_UID="1000"
@@ -147,37 +146,6 @@ WORKDIR /home/$NB_USER
 
 
 pip list
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
