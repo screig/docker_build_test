@@ -92,8 +92,6 @@ RUN apt-get update \
     nano-tiny \
  && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-
-
 ###################################################################
 ## Install all OS dependencies 
 RUN apt-get update \
