@@ -141,6 +141,6 @@ USER $NB_UID
 WORKDIR /home/$NB_USER
 
 
-pip list
+RUN pip list
 
 
