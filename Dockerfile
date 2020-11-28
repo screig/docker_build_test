@@ -115,8 +115,6 @@ RUN apt-get update \
 
 RUN npm install -g configurable-http-proxy
 
-
-
 ###################################################################
 # Sort out the version of python are we running
 RUN which python
