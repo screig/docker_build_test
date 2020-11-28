@@ -13,8 +13,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag ubuntu-tini-python:$(date +%s)
+      run: docker build . --file Dockerfile --tag screig/ubuntu-tini-python:$(date +%s) --tag screig/ubuntu-tini-python:latest
       
     - name: Login to DockerHub Registry
       run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+      
+    - name: Docker Push
+      run: docker push screig/ubuntu-tini-python
+
+
+
+
