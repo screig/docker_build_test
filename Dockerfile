@@ -32,7 +32,7 @@ RUN apt-get update \
     locales \
     fonts-liberation \
     run-one \
-	software-properties-common \
+   software-properties-common \
  && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
@@ -51,7 +51,6 @@ ENV SHELL=/bin/bash \
 COPY fix-permissions /usr/local/bin/fix-permissions
 RUN /bin/chmod a+rx /usr/local/bin/fix-permissions
 
-
 # Enable prompt color in the skeleton .bashrc before creating the default NB_USER
 # hadolint ignore=SC2016
 RUN sed -i 's/^#force_color_prompt=yes/force_color_prompt=yes/' /etc/skel/.bashrc 
@@ -65,40 +64,30 @@ RUN echo "auth requisite pam_deny.so" >> /etc/pam.d/su && \
     chmod g+w /etc/passwd && \
     fix-permissions $HOME 
 
-###################################################################
-## Install all OS dependencies for fully functional notebook server
+## Install OS dependencies 
 RUN apt-get update \
  && apt-get install -yq --no-install-recommends \
-    build-essential \
-    emacs-nox \
-    vim-tiny \
-    git \
-    inkscape \
-    jed \
-    libsm6 \
-    libxext-dev \
-    libxrender1 \
-    lmodern \
-    netcat \
-    python3-dev \
+	build-essential \
+	emacs-nox \
+	vim-tiny \
+	git \
+	inkscape \
+	jed \
+	libsm6 \
+	libxext-dev \
+	libxrender1 \
+	lmodern \
+	netcat \
+	python3-dev \
 	python3-pip \
-    # ---- nbconvert dependencies ----
-    texlive-xetex \
-    texlive-fonts-recommended \
-    texlive-plain-generic \
-    # ----
-    tzdata \
-    unzip \
-    nano-tiny \
- && apt-get clean && rm -rf /var/lib/apt/lists/*
-
-###################################################################
-## Install all OS dependencies 
-RUN apt-get update \
- && apt-get install -yq --no-install-recommends \
-	# ---- We need this in order to be able to pip install jupyterhub
-	npm \
-	nodejs \ 
+	# ---- nbconvert dependencies ----
+	texlive-xetex \
+	texlive-fonts-recommended \
+	texlive-plain-generic \
+	# ----
+	tzdata \
+	unzip \
+	nano-tiny \
 	# ---- We need this in order to be able to pip install psycopg2
 	libpq-dev \
 	# ---- We need this in order to be able to pip install matplotlib
@@ -112,10 +101,6 @@ RUN apt-get update \
 	libxml2-dev \
  && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-
-RUN npm install -g configurable-http-proxy
-
-###################################################################
 # Sort out the version of python are we running
 RUN which python
 RUN ls /usr/bin/python*
@@ -133,9 +118,6 @@ RUN pip --version
 RUN pip install -U pip 
 RUN pip --version
 
-
-
-###################################################################
 ##	Switch to the local user
 USER $NB_UID
 WORKDIR /home/$NB_USER
