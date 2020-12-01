@@ -80,6 +80,7 @@ RUN apt-get update \
 	netcat \
 	python3-dev \
 	python3-pip \
+	python3-venv \
 	# ---- nbconvert dependencies ----
 	texlive-xetex \
 	texlive-fonts-recommended \
