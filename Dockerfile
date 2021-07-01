@@ -27,6 +27,7 @@ RUN apt-get update \
     wget \
     bzip2 \
     iputils-ping \
+    iproute2 \
     ca-certificates \
     sudo \
     apt-utils \
