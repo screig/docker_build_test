@@ -26,6 +26,7 @@ RUN apt-get update \
  && apt-get install -yq --no-install-recommends \
     wget \
     bzip2 \
+    iputils-ping \
     ca-certificates \
     sudo \
     apt-utils \
@@ -116,8 +117,14 @@ RUN update-alternatives --install /usr/bin/pip pip /usr/bin/pip3 10
 RUN pip --version
 
 # Upgrade pip
-RUN pip install -U pip 
+RUN pip install pip 
 RUN pip --version
+
+# Upgrade other packages
+RUN pip install -U setuptools  
+RUN pip install -U wheel
+RUN pip install pytest-html 
+RUN pip install pytest-timeout
 
 ##	Switch to the local user
 USER $NB_UID
