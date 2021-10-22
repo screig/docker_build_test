@@ -33,6 +33,7 @@ RUN apt-get update \
     apt-utils \
     locales \
     curl\
+    gpg-agent\
     fonts-liberation \
     run-one \
    software-properties-common \
