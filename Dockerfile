@@ -58,19 +58,20 @@ RUN cat /etc/odbcinst.ini
 
 # Now attempt to install the Oracle drivers
 RUN mkdir -p /opt/oracle
-
 RUN cd /opt/oracle
-
 RUN wget https://download.oracle.com/otn_software/linux/instantclient/185000/instantclient-basic-linux.x64-18.5.0.0.0dbru.zip
-
 RUN unzip instantclient-basic-linux.x64-18.5.0.0.0dbru.zip
+RUN ls -l
+RUN cd instantclient_18_5
+RUN ls -l
 
-RUN ln -s /opt/oracle/instantclient_18_5/libclntsh.so.18.1 /opt/oracle/instantclient_18_5/libclntsh.so
-RUN ln -s /opt/oracle/instantclient_18_5/libocci.so.18.1 /opt/oracle/instantclient_18_5/libocci.so
+#RUN ln -s /opt/oracle/instantclient_18_5/libclntsh.so.18.1 /opt/oracle/instantclient_18_5/libclntsh.so
+#RUN ln -s /opt/oracle/instantclient_18_5/libocci.so.18.1 /opt/oracle/instantclient_18_5/libocci.so
 
-RUN echo /opt/oracle/instantclient_12_2 > /etc/ld.so.conf.d/oracle-instantclient
-
+RUN echo /opt/oracle/instantclient_18_5 > /etc/ld.so.conf.d/oracle-instantclient
 RUN ldconfig
+RUN cd /
+
 
 # Configure environment
 ENV SHELL=/bin/bash \
