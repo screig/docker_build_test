@@ -32,6 +32,7 @@ RUN apt-get update \
     sudo \
     apt-utils \
     locales \
+    curl\
     fonts-liberation \
     run-one \
    software-properties-common \
