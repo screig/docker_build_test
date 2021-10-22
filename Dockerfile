@@ -42,6 +42,7 @@ RUN apt-get update \
 RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
     locale-gen
 
+# Install the mysql drivers
 RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
 
 RUN curl https://packages.microsoft.com/config/ubuntu/18.04/prod.list > /etc/apt/sources.list.d/mssql-release.list
@@ -51,6 +52,23 @@ RUN apt-get update
 RUN ACCEPT_EULA=Y apt-get install -y msodbcsql17
 
 RUN cat /etc/odbcinst.ini
+
+
+# Now attempt to install the Oracle drivers
+RUN mkdir -p /opt/oracle
+
+RUN cd /opt/oracle
+
+RUN wget https://download.oracle.com/otn_software/linux/instantclient/185000/instantclient-basic-linux.x64-18.5.0.0.0dbru.zip
+
+RUN unzip instantclient-basic-linux.x64-18.5.0.0.0dbru.zip
+
+RUN ln -s /opt/oracle/instantclient_18_5/libclntsh.so.18.1 /opt/oracle/instantclient_18_5/libclntsh.so
+RUN ln -s /opt/oracle/instantclient_18_5/libocci.so.18.1 /opt/oracle/instantclient_18_5/libocci.so
+
+RUN echo /opt/oracle/instantclient_12_2 > /etc/ld.so.conf.d/oracle-instantclient
+
+RUN ldconfig
 
 # Configure environment
 ENV SHELL=/bin/bash \
