@@ -48,7 +48,9 @@ RUN curl https://packages.microsoft.com/config/ubuntu/18.04/prod.list > /etc/apt
 
 RUN apt-get update 
 
-RUN ACCEPT_EULA=Y apt-get install -y msodbcsql
+RUN ACCEPT_EULA=Y apt-get install -y msodbcsql17
+
+RUN cat /etc/odbcinst.ini
 
 # Configure environment
 ENV SHELL=/bin/bash \
