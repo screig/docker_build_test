@@ -26,6 +26,8 @@ RUN apt-get update \
  && apt-get install -yq --no-install-recommends \
     wget \
     bzip2 \
+    zip \
+    unzip \
     iputils-ping \
     iproute2 \
     ca-certificates \
