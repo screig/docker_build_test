@@ -31,6 +31,7 @@ RUN apt-get update \
     iputils-ping \
     iproute2 \
     ca-certificates \
+    libaio1 \
     sudo \
     apt-utils \
     locales \
@@ -44,15 +45,11 @@ RUN apt-get update \
 RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
     locale-gen
 
-# Install the mysql drivers
+# Install the ms_sql drivers
 RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
-
 RUN curl https://packages.microsoft.com/config/ubuntu/18.04/prod.list > /etc/apt/sources.list.d/mssql-release.list
-
 RUN apt-get update 
-
 RUN ACCEPT_EULA=Y apt-get install -y msodbcsql17
-
 RUN cat /etc/odbcinst.ini
 
 
@@ -61,13 +58,10 @@ RUN mkdir -p /opt/oracle
 RUN cd /opt/oracle
 RUN wget https://download.oracle.com/otn_software/linux/instantclient/185000/instantclient-basic-linux.x64-18.5.0.0.0dbru.zip
 RUN unzip instantclient-basic-linux.x64-18.5.0.0.0dbru.zip
-
 RUN echo /opt/oracle/instantclient_18_5 > /etc/ld.so.conf.d/oracle-instantclient.conf
 RUN ldconfig
 RUN export LD_LIBRARY_PATH=/opt/oracle/instantclient_18_5:$LD_LIBRARY_PATH
-
-
-
+RUN echo $LD_LIBRARY_PATH
 
 # Configure environment
 ENV SHELL=/bin/bash \
