@@ -34,6 +34,7 @@ RUN apt-get update \
     libaio1 \
     sudo \
     apt-utils \
+    unixodbc \
     locales \
     curl\
     gpg-agent\
@@ -56,12 +57,13 @@ RUN cat /etc/odbcinst.ini
 # Now attempt to install the Oracle drivers
 RUN mkdir -p /opt/oracle
 RUN cd /opt/oracle
-RUN wget https://download.oracle.com/otn_software/linux/instantclient/185000/instantclient-basic-linux.x64-18.5.0.0.0dbru.zip
+RUN wget --no-verbose https://download.oracle.com/otn_software/linux/instantclient/185000/instantclient-basic-linux.x64-18.5.0.0.0dbru.zip 
 RUN unzip instantclient-basic-linux.x64-18.5.0.0.0dbru.zip
 RUN echo /opt/oracle/instantclient_18_5 > /etc/ld.so.conf.d/oracle-instantclient.conf
 RUN ldconfig
 RUN export LD_LIBRARY_PATH=/opt/oracle/instantclient_18_5:$LD_LIBRARY_PATH
 RUN echo $LD_LIBRARY_PATH
+RUN cat /etc/ld.so.conf.d/oracle-instantclient.conf
 
 # Configure environment
 ENV SHELL=/bin/bash \
