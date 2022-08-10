@@ -1,5 +1,5 @@
 
-![example workflow](https://github.com/screig/ubuntu-tini-python/blob/main/.github/workflows/docker-image.yml/badge.svg)
+![example workflow](https://github.com/screig/ubuntu-tini-python/.gitgub/workflows/docker-image.yml/badge.svg)
 
 Builds a docker image using github actions
 
